@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository'){
             steps{
-                git credentialsId: 'Jade-Admin', url:  'git@github.com:Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
+                git credentialsId: 'Details', url:  'git@github.com:Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
 
             }
         }
