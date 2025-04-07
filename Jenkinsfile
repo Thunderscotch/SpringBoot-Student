@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository'){
-            steps{
-                git credentialsId: 'Details', url:  'git@github.com:Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
-
-            }
-        }
         stage('Compile and Clean'){
             steps{
                 sh "mvn clean compile"
