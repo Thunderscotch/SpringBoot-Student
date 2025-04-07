@@ -107,11 +107,4 @@ pipeline {
 //                 }
 //         }
 }
-        post{
-        success {
-        echo 'Deployed'
-        }
-        failure{
-        echo 'failed'
-     }
- }
+

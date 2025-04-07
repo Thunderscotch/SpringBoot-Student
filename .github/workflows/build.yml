@@ -9,8 +9,6 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
-    env:
-      SPRING_PROFILES_ACTIVE: dev
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,4 +33,4 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Thunderscotch_SpringBoot-StudentDetails -Dsonar.organization=THUNDERSCOTCH
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Thunderscotch_SpringBoot-StudentDetails
