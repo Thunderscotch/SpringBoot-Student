@@ -9,6 +9,8 @@ services:
     image: demo
     build: .
     ports:
-      - "8086:8086"
+      - "8086:8096"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://subashnatrayan28:<C0JizQqizMtw9ie0>@mentorbridge.qmme5go.mongodb.net/?retryWrites=true&w=majority&appName=MentorBridge
     depends_on:
       - mongodb
