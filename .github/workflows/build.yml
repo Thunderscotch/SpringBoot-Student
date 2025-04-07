@@ -35,4 +35,4 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Thunderscotch_APP_DEV_ENV -Dsonar.organization=THUNDER SCOTCH
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Thunderscotch_SpringBoot-StudentDetails -Dsonar.organization=THUNDERSCOTCH
