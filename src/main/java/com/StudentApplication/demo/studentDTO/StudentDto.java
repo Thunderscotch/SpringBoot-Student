@@ -1,4 +1,4 @@
-package com.StudentApplication.demo.StudentDTO;
+package com.StudentApplication.demo.studentDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,5 +18,4 @@ public class StudentDto {
     String studentPhone;
     String studentDepartment;
     String studentBranch;
-
 }

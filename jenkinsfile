@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'demo'
+        CONTAINER_PORT = '8086'
+        HOST_PORT = '8096'
+    }
+
+    stages {
+        stage('Clone Repository'){
+            steps{
+                git 'https://github.com/Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
+
+            }
+        }
+        stage('Build Application'){
+            steps{
+            sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Build Docker Image'){
+            steps{
+                sh "docker build -t $IMAGE_NAME ."
+            }
+        }
+
+        stage('Stop & Remove Old Repository'){
+            steps{
+                sh """
+                    docker stop $IMAGE_NAME || true
+                    docker rm $IMAGE_NAME || true
+                    """
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps{
+                sh"""
+                    docker run -d --name $IMAGE_NAME -p $HOST_PORT:$CONTAINER_PORT $IMAGE_NAME
+                    """
+                }
+        }
+}
+        post{
+        success {
+        echo 'Deployed'
+        }
+        failure{
+        echo 'failed'
+     }
+ }
+ }

@@ -1,13 +1,12 @@
-package com.StudentApplication.demo.StudentServices;
+package com.StudentApplication.demo.studentServices;
 
 
-import com.StudentApplication.demo.StudentDTO.StudentDto;
-import com.StudentApplication.demo.StudentEntity.StudentEntity;
-import com.StudentApplication.demo.StudentRepo.StudentRepo;
+import com.StudentApplication.demo.studentDTO.StudentDto;
+import com.StudentApplication.demo.studentEntity.StudentEntity;
+import com.StudentApplication.demo.studentRepo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,13 +23,21 @@ public class StudentService {
 
     public StudentDto getStudent(String studentId){
         StudentEntity studentEntity = studentRepo.findByStudentId(studentId);
-        return StudentDto.builder().studentRegNo(studentEntity.getStudentRegNo()).studentFirstName(studentEntity.getStudentFirstName()).studentLastName(studentEntity.getStudentLastName()).studentBranch(studentEntity.getStudentBranch()).studentDepartment(studentEntity.getStudentDepartment()).studentEmail(studentEntity.getStudentEmail()).studentPhone(studentEntity.getStudentPhone()).build();
+        return StudentDto.builder().studentId(studentEntity.getStudentId()).studentRegNo(studentEntity.getStudentRegNo()).studentFirstName(studentEntity.getStudentFirstName()).studentLastName(studentEntity.getStudentLastName()).studentBranch(studentEntity.getStudentBranch()).studentDepartment(studentEntity.getStudentDepartment()).studentEmail(studentEntity.getStudentEmail()).studentPhone(studentEntity.getStudentPhone()).build();
     }
 
     public StudentDto updateStudentDetails(String studentId, StudentDto studentDto) {
-        Optional<StudentEntity> studentEntity = Optional.ofNullable(studentRepo.findByStudentId(studentId));
+        Optional<StudentEntity> studentEntity = Optional.of(studentRepo.findByStudentId(studentId));
 
-        if (studentEntity.isPresent()){
+        StudentEntity existingStudent = getStudentEntity(studentDto, studentEntity);
+
+        StudentEntity updatedStudents = studentRepo.save(existingStudent);
+
+        return StudentDto.builder().studentRegNo(updatedStudents.getStudentRegNo()).studentFirstName(updatedStudents.getStudentFirstName()).studentLastName(updatedStudents.getStudentLastName()).studentBranch(updatedStudents.getStudentBranch()).studentDepartment(updatedStudents.getStudentDepartment()).studentEmail(updatedStudents.getStudentEmail()).studentPhone(updatedStudents.getStudentPhone()).build();
+    }
+
+    private static StudentEntity getStudentEntity(StudentDto studentDto, Optional<StudentEntity> studentEntity) {
+        if (studentEntity.isPresent()) {
             StudentEntity existingStudent = studentEntity.get();
 
             existingStudent.setStudentRegNo(studentDto.getStudentRegNo());
@@ -40,23 +47,21 @@ public class StudentService {
             existingStudent.setStudentEmail(studentDto.getStudentEmail());
             existingStudent.setStudentDepartment(studentDto.getStudentDepartment());
             existingStudent.setStudentPhone(studentDto.getStudentPhone());
-
-            StudentEntity updatedStudents = studentRepo.save(existingStudent);
-
-            return StudentDto.builder().studentRegNo(updatedStudents.getStudentRegNo()).studentFirstName(updatedStudents.getStudentFirstName()).studentLastName(updatedStudents.getStudentLastName()).studentBranch(updatedStudents.getStudentBranch()).studentDepartment(updatedStudents.getStudentDepartment()).studentEmail(updatedStudents.getStudentEmail()).studentPhone(updatedStudents.getStudentPhone()).build();
+            return existingStudent;
         } else {
-            throw new RuntimeException("student not found");
+            throw new RuntimeException("Student is not found");
         }
     }
 
 
     public void deleteStudentDetails(String studentId) {
-        StudentEntity studentEntity = studentRepo.deleteByStudentId(studentId);
+        studentRepo.deleteByStudentId(studentId);
     }
 
     public List<StudentDto> getAllStudent() {
         List<StudentEntity> studentEntity = studentRepo.findAll();
         return studentEntity.stream().map(studentEntity1 -> StudentDto.builder()
+                .studentId(studentEntity1.getStudentId())
                 .studentRegNo(studentEntity1.getStudentRegNo())
                 .studentFirstName(studentEntity1.getStudentFirstName())
                 .studentLastName(studentEntity1.getStudentLastName())

@@ -1,4 +1,4 @@
-package com.StudentApplication.demo.StudentEntity;
+package com.StudentApplication.demo.studentEntity;
 
 
 import lombok.AllArgsConstructor;
