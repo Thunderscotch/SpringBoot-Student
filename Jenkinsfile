@@ -7,12 +7,12 @@ pipeline {
     }
 
     stages {
-//         stage('Clone Repository'){
-//             steps{
-//                 git 'https://github.com/Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
-//
-//             }
-//         }
+        stage('Clone Repository'){
+            steps{
+                git credentialsId: 'Jade-Admin', url:  'git@github.com:Thunderscotch/SpringBoot-StudentDetails.git'  //repo name
+
+            }
+        }
         stage('Compile and Clean'){
             steps{
                 sh "mvn clean compile"
