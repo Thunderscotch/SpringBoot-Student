@@ -31,7 +31,7 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                bat "docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
+                bat "docker push thunderscotch23/demo:${BUILD_NUMBER}"
             }
         }
 
