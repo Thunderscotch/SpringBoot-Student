@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Thunderscotch/SpringBoot-StudentDetails.git'
+                git branch: 'master', url: 'https://github.com/Thunderscotch/SpringBoot-Student.git'
                   }
             }
         stage('Compile and Clean'){
