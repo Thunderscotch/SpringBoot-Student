@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master', url: 'https://github.com/Thunderscotch/SpringBoot-Student.git'
-                  }
-            }
         stage('Compile and Clean'){
             steps{
                 sh "mvn clean compile"
