@@ -26,7 +26,7 @@ jobs:
           projectBaseDir: .
           args: >
             -Dsonar.organization=thunderscotch
-            -Dsonar.projectKey=Thunderscotch_SpringBoot-StudentDetails
+            -Dsonar.projectKey=Thunderscotch_SpringBoot-Student
             -Dsonar.sources=src/main/java
             -Dsonar.java.binaries=target/classes
         env:
