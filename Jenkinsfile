@@ -41,15 +41,15 @@ stage('Docker deploy'){
                 def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
                 if (containerExists) {
                   echo "Stopping and removing existing container: ${CONTAINER_NAME}"
-                  sh "docker stop ${CONTAINER_NAME}"
-                  sh "docker rm ${CONTAINER_NAME}"
+                  bat "docker stop ${CONTAINER_NAME}"
+                  bat "docker rm ${CONTAINER_NAME}"
                 } else {
                   echo "No existing container found with name ${CONTAINER_NAME}"
                 }
               }
 
                 // Remove old image if it exists
-                sh """
+                bat """
                     # Find the old image ID (excluding the latest build)
                     OLD_IMAGE_ID=\$(docker images -q thunderscotch23/demo | tail -n +2)
 
