@@ -46,7 +46,7 @@ stage('Docker deploy'){
 //                 } else {
 //                   echo "No existing container found with name ${CONTAINER_NAME}"
 //                 }
-//               }
+              }
 
                 // Remove old image if it exists
 //                 bat """
