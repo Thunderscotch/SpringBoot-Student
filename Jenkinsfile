@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         CONTAINER_NAME = 'demo'
-        SPRING_PROFILES_ACTIVE = 'dev'
+        SPRING_PROFILES_ACTIVE = 'qa'
         IMAGE_NAME = 'demo'
     }
 
