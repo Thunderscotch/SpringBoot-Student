@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Compile and Clean'){
             steps{
-                sh "mvn clean compile"
+                bat "mvn clean compile"
             }
         }
         stage('deploy'){
             steps{
-                sh "mvn package"
+                bat "mvn package"
             }
         }
 
