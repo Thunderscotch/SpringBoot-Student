@@ -21,8 +21,10 @@ pipeline {
 
         stage('Docker Login') {
             steps {
-                withCredentials([string(credentialsId: 'StudentDetailsID', variable: 'StudentDetailsPwd')]) {
-                    bat "docker login -u studentdetails -p ${StudentDetailsPwd}"
+                withCredentials([usernamePassword(credentialsId: 'DockerHubCredentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat """
+                        echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
+                    """
                 }
             }
         }
