@@ -39,27 +39,27 @@ stage('Docker deploy'){
               script {
                 // Stop and remove the existing container if it exists
                 def containerExists = bat(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
-                if (containerExists) {
-                  echo "Stopping and removing existing container: ${CONTAINER_NAME}"
-                  bat "docker stop ${CONTAINER_NAME}"
-                  bat "docker rm ${CONTAINER_NAME}"
-                } else {
-                  echo "No existing container found with name ${CONTAINER_NAME}"
-                }
-              }
+//                 if (containerExists) {
+//                   echo "Stopping and removing existing container: ${CONTAINER_NAME}"
+//                   bat "docker stop ${CONTAINER_NAME}"
+//                   bat "docker rm ${CONTAINER_NAME}"
+//                 } else {
+//                   echo "No existing container found with name ${CONTAINER_NAME}"
+//                 }
+//               }
 
                 // Remove old image if it exists
-                bat """
-                    # Find the old image ID (excluding the latest build)
-                    OLD_IMAGE_ID=\$(docker images -q thunderscotch23/demo | tail -n +2)
-
-                    if [ -n "\$OLD_IMAGE_ID" ]; then
-                        echo "Removing old images..."
-                        docker rmi -f \$OLD_IMAGE_ID || true
-                    else
-                        echo "No old images found."
-                    fi
-                """
+//                 bat """
+//                     # Find the old image ID (excluding the latest build)
+//                     OLD_IMAGE_ID=\$(docker images -q thunderscotch23/demo | tail -n +2)
+//
+//                     if [ -n "\$OLD_IMAGE_ID" ]; then
+//                         echo "Removing old images..."
+//                         docker rmi -f \$OLD_IMAGE_ID || true
+//                     else
+//                         echo "No old images found."
+//                     fi
+//                 """
               // Run a new container
               echo "Deploying new container: ${CONTAINER_NAME}"
               //sh 'docker run -itd -p  8092:8080 mentorbridge/stupro:${BUILD_NUMBER}'
