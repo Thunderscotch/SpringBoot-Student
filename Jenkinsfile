@@ -63,7 +63,7 @@ stage('Docker deploy'){
               // Run a new container
               echo "Deploying new container: ${CONTAINER_NAME}"
               //sh 'docker run -itd -p  8092:8080 mentorbridge/stupro:${BUILD_NUMBER}'
-              bat 'docker run -d --name ${CONTAINER_NAME} -e SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE} -p  8086:8096 thunderscotch23/demo:${BUILD_NUMBER}'
+              bat 'bat 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8096 thunderscotch23/demo:%BUILD_NUMBER%''
             }
         }
         stage('Start up docker compose') {
