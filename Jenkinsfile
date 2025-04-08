@@ -45,7 +45,7 @@ pipeline {
                     def containerExists = bat(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
 
                     // Uncomment this block to remove existing containers
-                    /*
+
                     if (containerExists) {
                         echo "Stopping and removing existing container: ${CONTAINER_NAME}"
                         bat "docker stop ${CONTAINER_NAME}"
@@ -53,15 +53,15 @@ pipeline {
                     } else {
                         echo "No existing container found with name ${CONTAINER_NAME}"
                     }
-                    */
+
                 }
 
                 // Uncomment to clean up old images
-                /*
+
                 bat """
                     FOR /F "skip=1 delims=" %%i IN ('docker images -q thunderscotch23/demo') DO docker rmi -f %%i
                 """
-                */
+
 
                 // Run a new container
                 echo "Deploying new container: ${CONTAINER_NAME}"
