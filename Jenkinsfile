@@ -13,11 +13,11 @@ pipeline {
             }
         }
 
-//         stage('Build Docker Image') {
-//             steps {
-//                 bat "docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
-//             }
-//         }
+        stage('Build Docker Image') {
+            steps {
+                bat "docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
+            }
+        }
 //
 //         stage('Docker Login') {
 //             steps {
