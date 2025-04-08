@@ -9,10 +9,10 @@ services:
     container_name: mongo-db
     ports:
       - "27017:27017"
-  bootstrapping:
-    image: demo
-    build: .
-    ports:
-      - "8086:8096"
-    depends_on:
-      - mongodb
+#  bootstrapping:
+#    image: demo
+#    build: .
+#    ports:
+#      - "8086:8096"
+#    depends_on:
+#      - mongodb
