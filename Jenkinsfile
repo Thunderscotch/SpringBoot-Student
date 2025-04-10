@@ -40,7 +40,7 @@ pipeline {
 
         stage('Docker deploy') {
             steps {
-                script {
+//                 script {
                     // Stop and remove the existing container if it exists
 //                     def containerExists = bat(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
 //
@@ -54,7 +54,7 @@ pipeline {
 //                         echo "No existing container found with name ${CONTAINER_NAME}"
 //                     }
 //
-                }
+//                 }
 //
 //                 // Uncomment to clean up old images
 //
