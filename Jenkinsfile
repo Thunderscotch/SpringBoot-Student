@@ -42,30 +42,30 @@ pipeline {
             steps {
                 script {
                     // Stop and remove the existing container if it exists
-                    def containerExists = bat(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
-
-                    // Uncomment this block to remove existing containers
-
-                    if (containerExists) {
-                        echo "Stopping and removing existing container: ${CONTAINER_NAME}"
-                        bat "docker stop ${CONTAINER_NAME}"
-                        bat "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "No existing container found with name ${CONTAINER_NAME}"
-                    }
-
-                }
-
-                // Uncomment to clean up old images
-
-                bat """
-                    FOR /F "skip=1 delims=" %%i IN ('docker images -q thunderscotch23/demo') DO docker rmi -f %%i
-                """
-
-
-                // Run a new container
-                echo "Deploying new container: ${CONTAINER_NAME}"
-                bat 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8096 thunderscotch23/demo:%BUILD_NUMBER%'
+//                     def containerExists = bat(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+//
+//                     // Uncomment this block to remove existing containers
+//
+//                     if (containerExists) {
+//                         echo "Stopping and removing existing container: ${CONTAINER_NAME}"
+//                         bat "docker stop ${CONTAINER_NAME}"
+//                         bat "docker rm ${CONTAINER_NAME}"
+//                     } else {
+//                         echo "No existing container found with name ${CONTAINER_NAME}"
+//                     }
+//
+//                 }
+//
+//                 // Uncomment to clean up old images
+//
+//                 bat """
+//                     FOR /F "skip=1 delims=" %%i IN ('docker images -q thunderscotch23/demo') DO docker rmi -f %%i
+//                 """
+//
+//
+//                 // Run a new container
+//                 echo "Deploying new container: ${CONTAINER_NAME}"
+                bat 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8086 thunderscotch23/demo:%BUILD_NUMBER%'
             }
         }
 
