@@ -54,7 +54,7 @@ pipeline {
 //                         echo "No existing container found with name ${CONTAINER_NAME}"
 //                     }
 //
-//                 }
+                }
 //
 //                 // Uncomment to clean up old images
 //
