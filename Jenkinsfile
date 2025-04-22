@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage('Build with Maven') {
             steps {
-                sh 'chmod +x mvnw'
+                sh 'chmod +x mvnw'    //have to add this line when using in the linux system
                 sh './mvnw clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                sh "sudo docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
 //                     Stop and remove the existing container if it exists
-                    def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    def containerExists = sh(script: "sudo docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
 
                     // Uncomment this block to remove existing containers
 
@@ -66,7 +66,7 @@ pipeline {
 
                 // Run a new container
                 echo "Deploying new container: ${CONTAINER_NAME}"
-                sh 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8086 thunderscotch23/demo:%BUILD_NUMBER%'
+                sh 'sudo docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8086 thunderscotch23/demo:%BUILD_NUMBER%'
             }
         }
 
