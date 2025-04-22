@@ -10,7 +10,8 @@ pipeline {
     stages {
         stage('Build with Maven') {
             steps {
-                sh './mvnw clean package -DskipTests'
+                sh 'chmod +x mvn'
+                sh './mvn clean package -DskipTests'
             }
         }
 
