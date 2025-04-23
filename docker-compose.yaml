@@ -4,15 +4,16 @@ services:
     image: thunderscotch23/demo:${BUILD_NUMBER}
     environment:
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
-  mongodb:
+  demo-project:
+    image: demo
+    build: .
+    ports:
+      - "8086:8086"
+
+  bootstrapping:
     image: mongo
     container_name: mongo-db
     ports:
       - "27017:27017"
-#  bootstrapping:
-#    image: demo
-#    build: .
-#    ports:
-#      - "8086:8096"
-#    depends_on:
-#      - mongodb
+    depends_on:
+      - demo-project

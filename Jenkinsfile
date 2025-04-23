@@ -39,8 +39,8 @@ pipeline {
         }
         */
 
-        stage('Docker deploy') {
-            steps {
+//         stage('Docker deploy') {
+//             steps {
 //                 script {
 // //                     Stop and remove the existing container if it exists
 //                     def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
@@ -59,22 +59,22 @@ pipeline {
 
                 // Uncomment to clean up old images
 
-                sh """
-                    FOR /F "skip=1 delims=" %%i IN ('docker images -q thunderscotch23/demo') DO docker rmi -f %%i
-                """
-
-
-                // Run a new container
-                echo "Deploying new container: ${CONTAINER_NAME}"
-                sh 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8086 thunderscotch23/demo:%BUILD_NUMBER%'
-            }
-        }
-
-//         stage('Start up docker compose') {
-//             steps {
-//                 bat 'docker-compose down || exit 0'
-//                 bat 'docker-compose up -d --build'
+//                 sh """
+//                     FOR /F "skip=1 delims=" %%i IN ('docker images -q thunderscotch23/demo') DO docker rmi -f %%i
+//                 """
+//
+//
+//                 // Run a new container
+//                 echo "Deploying new container: ${CONTAINER_NAME}"
+//                 sh 'docker run -d --name %CONTAINER_NAME% -e SPRING_PROFILES_ACTIVE=%SPRING_PROFILES_ACTIVE% -p 8086:8086 thunderscotch23/demo:%BUILD_NUMBER%'
 //             }
 //         }
+
+        stage('Start up docker compose') {
+            steps {
+                bat 'docker-compose down || exit 0'
+                bat 'docker-compose up -d --build'
+            }
+        }
     }
 }
