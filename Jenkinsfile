@@ -41,21 +41,21 @@ pipeline {
 
         stage('Docker deploy') {
             steps {
-                script {
-//                     Stop and remove the existing container if it exists
+//                 script {
+// //                     Stop and remove the existing container if it exists
 //                     def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
-
-                    // Uncomment this block to remove existing containers
-
-                    if (containerExists) {
-                        echo "Stopping and removing existing container: ${CONTAINER_NAME}"
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "No existing container found with name ${CONTAINER_NAME}"
-                    }
-
-                }
+//
+//                     // Uncomment this block to remove existing containers
+//
+//                     if (containerExists) {
+//                         echo "Stopping and removing existing container: ${CONTAINER_NAME}"
+//                         sh "docker stop ${CONTAINER_NAME}"
+//                         sh "docker rm ${CONTAINER_NAME}"
+//                     } else {
+//                         echo "No existing container found with name ${CONTAINER_NAME}"
+//                     }
+//
+//                 }
 
                 // Uncomment to clean up old images
 
