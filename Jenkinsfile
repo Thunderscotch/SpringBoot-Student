@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
 //                     Stop and remove the existing container if it exists
-                    def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+//                     def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
 
                     // Uncomment this block to remove existing containers
 
