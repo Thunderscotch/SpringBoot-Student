@@ -2,15 +2,10 @@ version: '3.8'
 services:
   app:
     image: thunderscotch23/demo:${BUILD_NUMBER}
-    environment:
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
-    networks:
-      - monitoring
-  demo-project:
-    image: demo
-    build: .
     ports:
       - "8086:8086"
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
     networks:
       - monitoring
 
