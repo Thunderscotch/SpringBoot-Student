@@ -4,11 +4,15 @@ services:
     image: thunderscotch23/demo:${BUILD_NUMBER}
     environment:
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+    networks:
+      - monitoring
   demo-project:
     image: demo
     build: .
     ports:
       - "8086:8086"
+    networks:
+      - monitoring
 
   bootstrapping:
     image: mongo
@@ -17,3 +21,16 @@ services:
       - "27017:27017"
     depends_on:
       - demo-project
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+
