@@ -34,3 +34,6 @@ services:
     networks:
       - monitoring
 
+networks:
+  monitoring:
+    driver: bridge
