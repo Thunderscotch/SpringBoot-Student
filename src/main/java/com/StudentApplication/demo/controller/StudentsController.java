@@ -5,11 +5,9 @@ import java.util.List;
 import com.StudentApplication.demo.studentDTO.StudentDto;
 import com.StudentApplication.demo.studentServices.StudentService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/students")
