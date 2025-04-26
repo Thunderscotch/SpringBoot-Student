@@ -14,16 +14,6 @@ services:
     networks:
       - monitoring
 
-  bootstrapping:
-    image: mongo
-    container_name: mongo-db
-    ports:
-      - "27017:27017"
-    depends_on:
-      - demo-project
-    networks:
-      - monitoring
-
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -31,6 +21,16 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+
+  bootstrapping:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    depends_on:
+      - demo-project
     networks:
       - monitoring
 
