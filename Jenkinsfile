@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage('Build with Maven') {
             steps {
-                sh 'chmod +x mvnw'    //have to add this line when using in the linux system
-                sh './mvnw clean package -DskipTests'
+//                 bat 'chmod +x mvnw'    //have to add this line when using in the linux system
+                bat './mvnw clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                bat "docker build -t thunderscotch23/${IMAGE_NAME}:${BUILD_NUMBER} ."
             }
         }
 
@@ -72,8 +72,8 @@ pipeline {
 
         stage('Start up docker compose') {
             steps {
-                sh 'docker-compose down || exit 0'
-                sh 'docker-compose up -d --build'
+                bat 'docker-compose down || exit 0'
+                bat 'docker-compose up -d --build'
             }
         }
     }

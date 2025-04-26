@@ -4,15 +4,18 @@ import java.util.List;
 
 import com.StudentApplication.demo.studentDTO.StudentDto;
 import com.StudentApplication.demo.studentServices.StudentService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/students")
 public class StudentsController {
 
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @PostMapping("/add")
     public StudentDto addStudent(@RequestBody StudentDto studentDto) {
